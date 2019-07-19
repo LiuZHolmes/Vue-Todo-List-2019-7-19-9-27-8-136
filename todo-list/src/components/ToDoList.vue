@@ -6,7 +6,8 @@
     <ol>
       <li v-for="item in filteredItems" :key="item.id">
       <input type="checkbox" v-model="item.checked">
-      <span>{{item.text}}</span>
+      <span v-if="!item.editing" v-on:dblclick="editItem(item)">{{item.text}}</span>
+      <input v-if="item.editing" autofocus="true" type="text" v-model="item.text" @keyup.esc="cancelEdit(item)" @keyup.enter="doneEdit(item)">
       </li>
     </ol>
     <span v-on:click="setLevel('all')">ALL</span>
@@ -21,10 +22,14 @@ export default {
   data() {
     return {
       level: "all",
+      editingItem: null,
+      cachedText: "",
+      newItem: "",
       items: [
         {
           text: "Hello world",
-          checked: false
+          checked: false,
+          editing: false
         }
       ]
     };
@@ -40,25 +45,36 @@ export default {
   methods: {
     addItem() {
       this.items.push({
-          text: this.newItem,
-          checked: false 
-        });
+        text: this.newItem,
+        checked: false,
+        editing: false
+      });
       this.newItem = "";
-      alert(this.items.length());
     },
     filterItems(level) {
       if (level === "all") {
         return this.items;
-      }
-      else if (level === "checked") {
+      } else if (level === "checked") {
         return this.items.filter(x => x.checked);
-      }
-      else if (level === "unchecked") {
+      } else if (level === "unchecked") {
         return this.items.filter(x => !x.checked);
       }
     },
     setLevel(level) {
       this.level = level;
+    },
+    editItem(item) {
+      item.editing = true;
+      this.cachedText = item.text;
+      this.editingItem = item;
+    },
+    cancelEdit(item) {
+      item.editing = false;
+      this.editingItem = null;
+      item.text = this.cachedText;
+    },
+    doneEdit(item) {
+      item.editing = false;
     }
   }
 };
@@ -66,7 +82,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.itemAdder,span {
+.itemAdder,
+span {
   margin: 10px;
 }
 </style>

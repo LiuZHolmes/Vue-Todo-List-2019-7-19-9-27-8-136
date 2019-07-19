@@ -6,7 +6,7 @@
     <ol>
       <li v-for="item in filteredItems" :key="item.id">
       <input type="checkbox" v-model="item.checked">
-      <span v-if="!item.editing" v-on:dblclick="editItem(item)">{{item.text}}</span>
+      <span :style="{'text-decoration': item.checked ? 'line-through' : 'none'}" v-if="!item.editing" v-on:dblclick="editItem(item)">{{item.text}}</span>
       <input v-if="item.editing" autofocus="true" type="text" v-model="item.text" @keyup.esc="cancelEdit(item)" @keyup.enter="doneEdit(item)">
       </li>
     </ol>

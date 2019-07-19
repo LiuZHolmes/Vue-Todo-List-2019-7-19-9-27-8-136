@@ -10,9 +10,9 @@
       <input v-if="item.editing" autofocus="true" type="text" v-model="item.text" @keyup.esc="cancelEdit(item)" @keyup.enter="doneEdit(item)">
       </li>
     </ol>
-    <span v-on:click="setLevel('all')">ALL</span>
-    <span v-on:click="setLevel('unchecked')">Active</span>
-    <span v-on:click="setLevel('checked')">Complete</span>
+    <span :style="{'border-style' : this.level === 'all' ? 'solid' : 'none'}" v-on:click="setLevel('all')">ALL</span>
+    <span :style="{'border-style' : this.level === 'unchecked' ? 'solid' : 'none'}" v-on:click="setLevel('unchecked')">Active</span>
+    <span :style="{'border-style' : this.level === 'checked' ? 'solid' : 'none'}" v-on:click="setLevel('checked')">Complete</span>
   </div>
 </template>
 
@@ -85,5 +85,10 @@ export default {
 .itemAdder,
 span {
   margin: 10px;
+}
+span {
+  border-width: 1px;
+  border-color: lightgray;
+  padding: 5px;
 }
 </style>

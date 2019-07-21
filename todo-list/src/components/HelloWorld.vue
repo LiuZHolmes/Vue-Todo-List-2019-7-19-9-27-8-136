@@ -24,4 +24,9 @@ export default {
 p {
   font-style: italic;
 }
+div {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
 </style>

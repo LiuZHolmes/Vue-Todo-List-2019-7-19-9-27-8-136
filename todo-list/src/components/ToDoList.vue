@@ -1,6 +1,6 @@
 
 <template>
-  <div>
+  <div class="ToDoList">
     <input class="itemAdder" v-model="newItem">
     <input type="button" value="Add" v-on:click="addItem">
     <ol>
@@ -90,5 +90,15 @@ span {
   border-width: 1px;
   border-color: lightgray;
   padding: 5px;
+}
+input[type="button"] {
+  font-size: 15px;
+  background-color: #2c3e50;
+  color: aliceblue;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-style: none;
+  border-radius:15px;
 }
 </style>

@@ -5,9 +5,13 @@
     <input type="button" value="Add" v-on:click="addItem">
     <ol>
       <li v-for="item in filteredItems" :key="item.id">
+      <span v-bind:style="{'background-color': item.hovering ? 'lightgray' : 'white'}">
       <input type="checkbox" v-model="item.checked">
-      <span :style="{'text-decoration': item.checked ? 'line-through' : 'none'}" v-if="!item.editing" v-on:dblclick="editItem(item)">{{item.text}}</span>
+      <span class="item" v-bind:style="{
+        'text-decoration': item.checked ? 'line-through' : 'none'}"
+        v-if="!item.editing" v-on:dblclick="editItem(item)" @mouseover="showShadow(item)" @mouseout="hideShadow(item)">{{item.text}}</span>
       <input v-if="item.editing" autofocus="true" type="text" v-model="item.text" @keyup.esc="cancelEdit(item)" @keyup.enter="doneEdit(item)">
+      </span>
       </li>
     </ol>
     <span :style="{'border-style' : this.level === 'all' ? 'solid' : 'none'}" v-on:click="setLevel('all')">ALL</span>
@@ -29,7 +33,8 @@ export default {
         {
           text: "Hello world",
           checked: false,
-          editing: false
+          editing: false,
+          hovering: false
         }
       ]
     };
@@ -47,7 +52,8 @@ export default {
       this.items.push({
         text: this.newItem,
         checked: false,
-        editing: false
+        editing: false,
+        hovering: false
       });
       this.newItem = "";
     },
@@ -75,6 +81,12 @@ export default {
     },
     doneEdit(item) {
       item.editing = false;
+    },
+    showShadow(item) {
+      item.hovering = true;
+    },
+    hideShadow(item) {
+      item.hovering = false;
     }
   }
 };
@@ -100,5 +112,9 @@ input[type="button"] {
   overflow: hidden;
   border-style: none;
   border-radius:15px;
+}
+li {
+  margin: 10px;
+  text-align: left;
 }
 </style>

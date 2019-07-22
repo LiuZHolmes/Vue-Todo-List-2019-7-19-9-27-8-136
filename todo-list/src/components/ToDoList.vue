@@ -1,7 +1,7 @@
 
 <template>
   <div class="ToDoList">
-    <input class="itemAdder" v-model="newItem">
+    <input class="itemAdder" @keyup.enter="addItem" v-model="newItem">
     <input type="button" value="Add" v-on:click="addItem">
     <ol>
       <li v-for="item in filteredItems" :key="item.id">
@@ -10,7 +10,7 @@
       <span class="item" v-bind:style="{
         'text-decoration': item.checked ? 'line-through' : 'none'}"
         v-if="!item.editing" v-on:dblclick="editItem(item)" @mouseover="showShadow(item)" @mouseout="hideShadow(item)">{{item.text}}</span>
-      <input v-if="item.editing" autofocus="true" type="text" v-model="item.text" @keyup.esc="cancelEdit(item)" @keyup.enter="doneEdit(item)">
+      <input v-else autofocus="true" type="text" v-model="item.text" @keyup.esc="cancelEdit(item)" @keyup.enter="doneEdit(item)">
       </span>
       </li>
     </ol>

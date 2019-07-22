@@ -1,5 +1,5 @@
 <template>
-  <div class="item">
+  <div class="item" v-show="isShow">
       <span v-bind:style="{'background-color': hovering ? 'lightgray' : 'white'}">
       <input type="checkbox" v-model="checked">
       <span class="item" v-bind:style="{
@@ -25,8 +25,13 @@ export default {
     initItem: Object
   },
   computed: {
-    filteredItems() {
-      return this.filterItems(this.$store.state.level);
+    isShow() {
+      let level = this.$store.state.level;
+      if (level === "checked") {
+        return this.checked === true;
+      } else if (level === "unchecked") {
+        return this.checked === false;
+      } else return true;
     }
   },
   methods: {

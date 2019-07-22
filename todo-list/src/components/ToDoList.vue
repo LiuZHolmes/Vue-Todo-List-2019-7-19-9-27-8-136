@@ -14,13 +14,12 @@
       </span>
       </li>
     </ol>
-    <span :style="{'border-style' : this.level === 'all' ? 'solid' : 'none'}" v-on:click="setLevel('all')">ALL</span>
-    <span :style="{'border-style' : this.level === 'unchecked' ? 'solid' : 'none'}" v-on:click="setLevel('unchecked')">Active</span>
-    <span :style="{'border-style' : this.level === 'checked' ? 'solid' : 'none'}" v-on:click="setLevel('checked')">Complete</span>
+    <filterButton v-on:changeLevel='setLevel' initLevel="all" ></filterButton>
   </div>
 </template>
 
 <script>
+import filterButton from "./filterButton.vue";
 export default {
   name: "ToDoList",
   data() {
@@ -46,6 +45,9 @@ export default {
     filteredItems() {
       return this.filterItems(this.level);
     }
+  },
+  components : {
+    filterButton
   },
   methods: {
     addItem() {

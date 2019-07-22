@@ -1,41 +1,34 @@
-
 <template>
   <div class="ToDoList">
-    <input class="itemAdder" @keyup.enter="addItem" v-model="newItem">
-    <input type="button" value="Add" v-on:click="addItem">
-    <ol>
+    <itemAdder></itemAdder>
+    <!-- <ol>
       <li v-for="item in filteredItems" :key="item.id">
       <span v-bind:style="{'background-color': item.hovering ? 'lightgray' : 'white'}">
       <input type="checkbox" v-model="item.checked">
       <span class="item" v-bind:style="{
         'text-decoration': item.checked ? 'line-through' : 'none'}"
-        v-if="!item.editing" v-on:dblclick="editItem(item)" @mouseover="showShadow(item)" @mouseout="hideShadow(item)">{{item.text}}</span>
-      <input v-else autofocus="true" type="text" v-model="item.text" @keyup.esc="cancelEdit(item)" @keyup.enter="doneEdit(item)">
+        v-show="!item.editing" v-on:dblclick="editItem(item)" @mouseover="showShadow(item)" @mouseout="hideShadow(item)">{{item.text}}</span>
+      <input v-show="item.editing" autofocus="true" type="text" v-model="item.text" @keyup.esc="cancelEdit(item)" @keyup.enter="doneEdit(item)">
       </span>
       </li>
-    </ol>
-    <filterButton v-on:changeLevel='setLevel' initLevel="all" ></filterButton>
+    </ol> -->
+    <!-- <item v-for="i in items.length" :key="i" :initItem="items[i]"></item> -->
+    <item v-for="(item, index) in items" :key="index" :initItem="item"></item>
+    <filterButton></filterButton>
   </div>
 </template>
 
 <script>
-import filterButton from "./filterButton.vue";
+import filterButton from "./filterButton";
+import itemAdder from "./itemAdder";
+import item from "./item"
 export default {
   name: "ToDoList",
   data() {
     return {
-      level: "all",
       editingItem: null,
       cachedText: "",
-      newItem: "",
-      items: [
-        {
-          text: "Hello world",
-          checked: false,
-          editing: false,
-          hovering: false
-        }
-      ]
+      items: this.$store.state.items
     };
   },
   props: {
@@ -43,22 +36,15 @@ export default {
   },
   computed: {
     filteredItems() {
-      return this.filterItems(this.level);
+      return this.filterItems(this.$store.state.level);
     }
   },
   components : {
-    filterButton
+    filterButton,
+    itemAdder,
+    item
   },
   methods: {
-    addItem() {
-      this.items.push({
-        text: this.newItem,
-        checked: false,
-        editing: false,
-        hovering: false
-      });
-      this.newItem = "";
-    },
     filterItems(level) {
       if (level === "all") {
         return this.items;
@@ -67,9 +53,6 @@ export default {
       } else if (level === "unchecked") {
         return this.items.filter(x => !x.checked);
       }
-    },
-    setLevel(level) {
-      this.level = level;
     },
     editItem(item) {
       item.editing = true;
@@ -96,24 +79,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.itemAdder,
-span {
-  margin: 10px;
-}
 span {
   border-width: 1px;
   border-color: lightgray;
   padding: 5px;
-}
-input[type="button"] {
-  font-size: 15px;
-  background-color: #2c3e50;
-  color: aliceblue;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  border-style: none;
-  border-radius:15px;
 }
 li {
   margin: 10px;

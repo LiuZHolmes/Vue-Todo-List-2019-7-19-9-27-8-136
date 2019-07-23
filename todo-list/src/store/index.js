@@ -11,9 +11,7 @@ export default new Vuex.Store({
     items: [
       {
         text: "Hello world",
-        checked: false,
-        editing: false,
-        hovering: false
+        checked: false
       }
     ]
   },
@@ -22,8 +20,6 @@ export default new Vuex.Store({
       state.items.push({
         text: payload,
         checked: false,
-        editing: false,
-        hovering: false,
         id: state.index
       });
       state.index++;

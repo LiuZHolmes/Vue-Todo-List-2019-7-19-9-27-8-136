@@ -49,7 +49,6 @@ export default {
 div {
   float: left;
   text-align: left;
-  margin-right: 225px;
 }
 </style>
 

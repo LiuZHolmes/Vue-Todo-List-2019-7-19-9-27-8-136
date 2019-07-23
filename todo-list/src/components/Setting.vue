@@ -17,34 +17,34 @@
 </template>
 
 <script>
-import navigateSideBar from "./navigateSideBar" ;
+import navigateSideBar from "./navigateSideBar";
 export default {
-	name: "Setting",
-	props: {
-		msg: String
-	},
-	components: {
-		navigateSideBar
-	},
-	data() {
-			return {
-				imageURL:'https://avatars3.githubusercontent.com/u/16951022?s=460&v=4',
-				phoneNumber: ""
-			}
-	},
-	methods: {
-	},
-	computed: {
-		username() {
-			return this.$route.params.username;
-		}
-	}
+  name: "Setting",
+  props: {
+    msg: String
+  },
+  components: {
+    navigateSideBar
+  },
+  data() {
+    return {
+      imageURL: "https://avatars3.githubusercontent.com/u/16951022?s=460&v=4",
+      phoneNumber: ""
+    };
+  },
+  methods: {},
+  computed: {
+    username() {
+      return this.$route.params.username;
+    }
+  }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .profile {
-	float: left;
+  float: left;
+  margin-left: 200px;
 }
 </style>

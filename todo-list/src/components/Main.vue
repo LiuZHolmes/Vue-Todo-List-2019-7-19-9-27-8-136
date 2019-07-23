@@ -2,10 +2,10 @@
   <div>
     <navigateSideBar :username="username" class="sidebar"/>
     <div class="content">
-    <el-button class="el-button" @click="backConfirm" round>Back</el-button>
-    <TodoTitle :title="title" subTitle="Simple Todo List with adding and filter by diff status."/>
-    <ToDoList/>
-    <filterButton class="filterButton"/>
+      <el-button class="back-button" @click="backConfirm" round>Back</el-button>
+      <TodoTitle :title="title" subTitle="Simple Todo List with adding and filter by diff status."/>
+      <ToDoList/>
+      <filterButton class="filterButton"/>
     </div>
   </div>
 </template>
@@ -64,10 +64,11 @@ export default {
 p {
   font-style: italic;
 }
-.el-button {
+.back-button {
   text-align: left;
 }
 .content {
   float: left;
+  margin-left: 680px;
 }
 </style>

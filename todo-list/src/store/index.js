@@ -1,5 +1,4 @@
-import { SET_LEVEL, ADD_ITEM, SET_CHECKED, SET_INDEX } from "./mutation-types";
-import { GET_TODO } from "./action-types";
+import { SET_LEVEL, ADD_ITEM, SET_CHECKED, SET_INDEX, GET_TODO } from "./const-types";
 import Vue from "vue";
 import Vuex from "vuex";
 

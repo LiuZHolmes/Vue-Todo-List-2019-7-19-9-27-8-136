@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { SET_CHECKED } from '../store/mutation-types';
+import { SET_CHECKED } from '../store/const-types';
 export default {
   name: "item",
   data() {

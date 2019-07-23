@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { ADD_ITEM } from "../store/mutation-types";
+import { ADD_ITEM } from "../store/const-types";
 export default {
   data() {
     return {

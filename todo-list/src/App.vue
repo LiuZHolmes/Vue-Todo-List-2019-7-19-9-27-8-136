@@ -6,7 +6,7 @@
 
 <script>
 import HelloWorld from "./components/HelloWorld.vue";
-import { GET_TODO } from "./store/action-types";
+import { GET_TODO } from "./store/const-types";
 export default {
   name: "app",
   components: {

@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { SET_LEVEL } from "../store/mutation-types";
+import { SET_LEVEL } from "../store/const-types";
 export default {
   name: 'filterButton',
   props: {

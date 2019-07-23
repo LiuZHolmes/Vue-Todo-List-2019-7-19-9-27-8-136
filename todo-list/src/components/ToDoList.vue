@@ -1,8 +1,8 @@
 <template>
   <div class="ToDoList">
     <itemAdder></itemAdder>
-    <item v-for="(item, index) in items" :key="index" :initItem="item" :index="index"></item>
-    <filterButton></filterButton>
+    <item class="item" v-for="(item, index) in items" :key="index" :initItem="item" :index="index"></item>
+    <filterButton class="filterButton"></filterButton>
   </div>
 </template>
 
@@ -41,8 +41,12 @@ span {
   border-color: lightgray;
   padding: 5px;
 }
-item {
+.filterButton {
+  margin-top: 20px;
+}
+.item {
   margin: 10px;
+  margin-top: 15px;
   text-align: left;
 }
 </style>

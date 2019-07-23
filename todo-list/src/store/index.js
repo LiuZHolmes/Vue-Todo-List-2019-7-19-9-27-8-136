@@ -23,8 +23,10 @@ export default new Vuex.Store({
         text: payload,
         checked: false,
         editing: false,
-        hovering: false
+        hovering: false,
+        id: state.index
       });
+      state.index++;
     },
     [SET_LEVEL](state, payload) {
       state.level = payload;

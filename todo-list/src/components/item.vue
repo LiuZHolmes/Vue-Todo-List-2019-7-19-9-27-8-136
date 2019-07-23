@@ -21,7 +21,8 @@ export default {
       checked: this.initItem.checked,
       editing: this.initItem.editItem,
       hovering: this.initItem.hovering,
-
+      id: this.initItem.id,
+      cachedNumber: 0,
       cachedText: "",
       'global_index': this.$store.state.index
     };
@@ -43,7 +44,7 @@ export default {
     },
     orderNumber() {
       let level = this.$store.state.level;
-      let text = this.text;
+      let id = this.id;
       let filterItems;
       if (level === "all") {
         filterItems =  this.$store.state.items;
@@ -52,7 +53,7 @@ export default {
       } else if (level === "unchecked") {
         filterItems =  this.$store.state.items.filter(x => !x.checked);
       }
-      return filterItems.findIndex(x => x.text === text) + 1;
+      return filterItems.findIndex(x => x.id === id) + 1;
     }
   },
   methods: {
@@ -64,8 +65,8 @@ export default {
       this.$store.commit(SET_CHECKED,payload);
     },
     editItem() {
-      this.editing = true;
       this.cachedText = this.text;
+      this.editing = true;
     },
     cancelEdit() {
       this.editing = false;

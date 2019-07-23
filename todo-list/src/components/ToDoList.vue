@@ -48,5 +48,6 @@ span {
   margin: 10px;
   margin-top: 15px;
   text-align: left;
+  margin-left: 80px;
 }
 </style>

@@ -32,5 +32,6 @@ span {
   border-color: lightgray;
   padding: 5px;
   margin: 10px;
+  font-weight: bold;
 }
 </style>

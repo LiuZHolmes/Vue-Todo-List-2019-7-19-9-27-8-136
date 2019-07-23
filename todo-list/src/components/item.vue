@@ -86,4 +86,7 @@ export default {
 </script>
 
 <style scoped>
+.item-text {
+    margin-left: 30px;
+}
 </style>

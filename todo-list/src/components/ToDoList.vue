@@ -15,14 +15,16 @@ export default {
   data() {
     return {
       editingItem: null,
-      cachedText: "",
-      items: this.$store.state.items
+      cachedText: ""
     };
   },
   props: {
     msg: String
   },
   computed: {
+      items() {
+        return this.$store.getters.getItems
+      }
   },
   components: {
     filterButton,

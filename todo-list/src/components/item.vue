@@ -58,7 +58,7 @@ export default {
         index: this.index,
         checked: this.item.checked
       };
-      this.$store.commit(SET_CHECKED,payload);
+      this.$store.dispatch(SET_CHECKED,payload);
     },
     editItem() {
       this.cachedText = this.item.text;

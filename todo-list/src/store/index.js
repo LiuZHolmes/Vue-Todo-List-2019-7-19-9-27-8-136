@@ -58,14 +58,12 @@ export default new Vuex.Store({
           alert(error);
         });
     },
-    [SET_CHECKED]({commit, state},payload) {
+    [SET_CHECKED]({state},payload) {
       let newItem = state.items[payload.index];
       newItem.checked = payload.checked;
       axios
-        .put("http://localhost:3001/todos/" + payload.index, newItem)
-        .then(() => {
-          commit(SET_CHECKED, payload.index);
-        })
+        .put("http://localhost:3001/todos/" + newItem.id, newItem)
+        .then()
         .catch(error => {
           alert(error);
         });

@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { SET_CHECKED } from '../store/const-types';
+import { SET_CHECKED, DELETE_ITEM, SET_TEXT } from '../store/const-types';
 export default {
   name: "item",
   data() {
@@ -41,24 +41,18 @@ export default {
     orderNumber() {
       let level = this.$store.state.level;
       let id = this.item.id;
-      let filterItems;
-      if (level === "all") {
-        filterItems =  this.$store.state.items;
-      } else if (level === "checked") {
-        filterItems =  this.$store.state.items.filter(x => x.checked);
+      let filterItems = this.$store.getters.activeItems;
+      if (level === "checked") {
+        filterItems =  filterItems.filter(x => x.checked);
       } else if (level === "unchecked") {
-        filterItems =  this.$store.state.items.filter(x => !x.checked);
+        filterItems =  filterItems.filter(x => !x.checked);
       }
       return filterItems.findIndex(x => x.id === id) + 1;
     }
   },
   methods: {
     setChecked() {
-      let payload = {
-        index: this.index,
-        checked: this.item.checked
-      };
-      this.$store.dispatch(SET_CHECKED,payload);
+      this.$store.dispatch(SET_CHECKED,this.item);
     },
     editItem() {
       this.cachedText = this.item.text;
@@ -70,6 +64,12 @@ export default {
     },
     doneEdit() {
       this.editing = false;
+      if (!this.item.text) {
+        this.$store.dispatch(DELETE_ITEM,this.item);
+      }
+      else {
+        this.$store.dispatch(SET_TEXT,this.item);
+        }
     },
     showShadow() {
       this.hovering = true;

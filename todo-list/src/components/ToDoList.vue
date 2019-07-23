@@ -1,7 +1,7 @@
 <template>
   <div class="ToDoList">
     <itemAdder></itemAdder>
-    <item class="item" v-for="(item, index) in items" :key="index" :initItem="item" :index="index"></item>
+    <item class="item" v-for="(item, index) in activeItems" :key="item.id" :initItem="item" :index="index"></item>
   </div>
 </template>
 
@@ -20,8 +20,8 @@ export default {
     msg: String
   },
   computed: {
-    items() {
-      return this.$store.state.items;
+    activeItems() {
+      return this.$store.getters.activeItems;
     }
   },
   components: {

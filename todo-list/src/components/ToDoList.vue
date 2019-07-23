@@ -2,12 +2,10 @@
   <div class="ToDoList">
     <itemAdder></itemAdder>
     <item class="item" v-for="(item, index) in items" :key="index" :initItem="item" :index="index"></item>
-    <filterButton class="filterButton"></filterButton>
   </div>
 </template>
 
 <script>
-import filterButton from "./filterButton";
 import itemAdder from "./itemAdder";
 import item from "./item";
 export default {
@@ -27,7 +25,6 @@ export default {
     }
   },
   components: {
-    filterButton,
     itemAdder,
     item
   },
@@ -41,9 +38,6 @@ span {
   border-width: 1px;
   border-color: lightgray;
   padding: 5px;
-}
-.filterButton {
-  margin-top: 20px;
 }
 .item {
   margin: 10px;

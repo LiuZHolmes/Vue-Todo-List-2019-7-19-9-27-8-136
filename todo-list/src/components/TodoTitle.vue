@@ -1,13 +1,13 @@
 <template>
   <div>
-    <h1>Jquery To Do List</h1>
-    <p>Simple Todo List with adding and filter by diff status.</p>
-    <ToDoList></ToDoList>
+    <h1>{{title}}</h1>
+    <p>{{subTitle}}</p>
   </div>
 </template>
 
 <script>
 export default {
+  name: "ToDoTitle",
     props: {
         title: String,
         subTitle: String

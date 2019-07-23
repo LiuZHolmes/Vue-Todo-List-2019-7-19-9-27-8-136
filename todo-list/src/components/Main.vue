@@ -1,20 +1,24 @@
 <template>
   <div>
-    <h1>Jquery To Do List</h1>
-    <p>Simple Todo List with adding and filter by diff status.</p>
-    <ToDoList></ToDoList>
+    <TodoTitle title="Jquery To Do List" subTitle="Simple Todo List with adding and filter by diff status."/>
+    <ToDoList/>
+    <filterButton class="filterButton"/>
   </div>
 </template>
 
 <script>
-import ToDoList from './ToDoList.vue'
+import ToDoList from './ToDoList'
+import TodoTitle from "./TodoTitle";
+import filterButton from "./filterButton";
 export default {
   name: 'HelloWorld',
   props: {
     msg: String
   },
   components: {
-    ToDoList
+    ToDoList,
+    TodoTitle,
+    filterButton
   }
 }
 </script>

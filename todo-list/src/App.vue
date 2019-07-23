@@ -1,16 +1,14 @@
 <template>
   <div id="app">
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
 import { GET_TODO } from "./store/const-types";
 export default {
   name: "app",
   components: {
-    HelloWorld
   },
   created() {
     this.$store.dispatch(GET_TODO);

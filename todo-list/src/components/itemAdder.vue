@@ -1,25 +1,25 @@
 <template>
   <div class="itemAdder">
-    <input class="itemAdder" @keyup.enter="addItem" v-model="newItem">
-    <input type="button" value="Add" v-on:click="addItem">
+    <input class="itemAdder" @keyup.enter="addItem" v-model="newItemText" />
+    <input type="button" value="Add" v-on:click="addItem" />
   </div>
 </template>
 
 <script>
-import { ADD_ITEM } from '../store/mutation-types';
+import { ADD_ITEM } from "../store/mutation-types";
 export default {
   data() {
-      return {
-        newItem: this.$store.state.newItem
-      }
+    return {
+      newItemText: ""
+    };
   },
   methods: {
     addItem() {
-      this.$store.commit(ADD_ITEM,this.newItem);
-      this.newItem="";
+      this.$store.dispatch(ADD_ITEM, this.newItemText);
+      this.newItemText = "";
     }
   }
-}
+};
 </script>
 
 <style scoped>
@@ -34,6 +34,6 @@ input[type="button"] {
   justify-content: center;
   overflow: hidden;
   border-style: none;
-  border-radius:15px;
+  border-radius: 15px;
 }
 </style>

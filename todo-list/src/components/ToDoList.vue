@@ -22,17 +22,16 @@ export default {
     msg: String
   },
   computed: {
-      items() {
-        return this.$store.getters.getItems
-      }
+    items() {
+      return this.$store.state.items;
+    }
   },
   components: {
     filterButton,
     itemAdder,
     item
   },
-  methods: {
-  }
+  methods: {}
 };
 </script>
 

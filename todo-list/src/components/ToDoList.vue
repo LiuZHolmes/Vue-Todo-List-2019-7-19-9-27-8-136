@@ -41,8 +41,10 @@ span {
 }
 .item {
   margin: 10px;
-  margin-top: 15px;
-  text-align: left;
-  margin-left: 80px;
+  margin-top: 15px; 
+  margin-left: -30px;
+}
+div {
+  text-align: center;
 }
 </style>

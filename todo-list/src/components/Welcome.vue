@@ -12,7 +12,7 @@ export default {
   name: "Welcome",
   data() {
     return {
-      username:""
+      username:"Hendricks"
     }
   },
   computed: {

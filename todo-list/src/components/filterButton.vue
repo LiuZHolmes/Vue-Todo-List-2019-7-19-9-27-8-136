@@ -34,4 +34,7 @@ span {
   margin: 10px;
   font-weight: bold;
 }
+div {
+  text-align: center;
+}
 </style>

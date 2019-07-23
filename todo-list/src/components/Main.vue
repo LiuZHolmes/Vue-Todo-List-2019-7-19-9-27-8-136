@@ -1,25 +1,52 @@
 <template>
   <div>
-    <el-button class="el-button" round>Back</el-button>
+    <navigateSideBar :username="username" class="sidebar"/>
+    <div class="content">
+    <el-button class="el-button" @click="backConfirm" round>Back</el-button>
     <TodoTitle :title="title" subTitle="Simple Todo List with adding and filter by diff status."/>
     <ToDoList/>
     <filterButton class="filterButton"/>
+    </div>
   </div>
 </template>
 
 <script>
-import ToDoList from './ToDoList'
+import ToDoList from "./ToDoList";
 import TodoTitle from "./TodoTitle";
 import filterButton from "./filterButton";
+import navigateSideBar from "./navigateSideBar" ;
 export default {
-  name: 'HelloWorld',
+  name: "HelloWorld",
   props: {
     msg: String
   },
   components: {
     ToDoList,
     TodoTitle,
-    filterButton
+    filterButton,
+    navigateSideBar
+  },
+  methods: {
+    backConfirm() {
+      this.$confirm("将返回欢迎界面, 是否继续?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      })
+        .then(() => {
+          this.$router.push("/");
+          this.$message({
+            type: "success",
+            message: "已返回!"
+          });
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "已取消返回"
+          });
+        });
+    }
   },
   computed: {
     username() {
@@ -29,7 +56,7 @@ export default {
       return `${this.username}'s To Do List`;
     }
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -37,15 +64,10 @@ export default {
 p {
   font-style: italic;
 }
-div {
-  width: 50%;
-  margin-left: auto;
-  margin-right: auto;
-}
-:not(.el-button){
-  text-align: center;
-}
 .el-button {
   text-align: left;
+}
+.content {
+  float: left;
 }
 </style>

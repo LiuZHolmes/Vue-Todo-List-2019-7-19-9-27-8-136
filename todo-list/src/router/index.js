@@ -6,7 +6,7 @@ Vue.use(VueRouter);
 
 const routes = [
   { path: "/", component: Welcome },
-  { path: "/main", component: Main }
+  { path: "/main/:username", component: Main }
 ];
 export default new VueRouter({
   routes

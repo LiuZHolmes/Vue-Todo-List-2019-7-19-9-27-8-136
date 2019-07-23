@@ -1,27 +1,37 @@
 <template>
   <div>
     <h1>Welcome</h1>
-    <input type="text" placeholder="Type your name here..."/>
+    <input type="text" placeholder="Type your name here..." v-model="username"/>
     <br/>
-    <input type="button" @click="toMain" value="Start"/>
+    <router-link :to="path">Go to main</router-link>
   </div>
 </template>
 
 <script>
 export default {
   name: "Welcome",
+  data() {
+    return {
+      username:""
+    }
+  },
+  computed: {
+    path() {
+      return `/main/${this.username}`;
+    }
+  },
   props: {
     msg: String
   },
   methods: {
-    toMain() {
-      this.$router.push("/main");
-    }
   }
 };
 </script>
 
 <style scoped>
+div {
+  text-align: center;
+}
 input[type="text"] {
   font-size: 15px;
   margin-bottom: 10px;
